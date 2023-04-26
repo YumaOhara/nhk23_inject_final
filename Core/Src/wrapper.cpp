@@ -46,10 +46,6 @@ void main_cpp(void)
 	HAL_GPIO_WritePin(GPIOC, YELLOW_LED_Pin, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(GPIOC, RED_LED_Pin, GPIO_PIN_SET);
 
-	// 有効化後、黄色LEDを点灯、赤色LEDを消灯
-	HAL_GPIO_WritePin(GPIOC, YELLOW_LED_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOC, RED_LED_Pin, GPIO_PIN_RESET);
-
 
 	// メインループ
 	while(1)
@@ -114,9 +110,10 @@ void main_cpp(void)
 			if(B == 1){
 				__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 900);
 			}
-			if(Y == 1){
-				__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 930);
-			}
+			//真ん中のモーターが固いため無効化
+//			if(Y == 1){
+//				__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 930);
+//			}
 		}
 
 		while(DOWN == 1){
@@ -129,6 +126,7 @@ void main_cpp(void)
 			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 550);
 		}
 
+		//固いため値大き目
 		if(Y == 1){
 			__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 580);
 		}
